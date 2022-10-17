@@ -183,17 +183,17 @@ function miui_fix_fod() {
 }
 
 # Post to CI channel
-function tg_post_msg() {
-    # curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendAnimation -d animation="https://media.giphy.com/media/PPgZCwZPKrLcw75EG1/giphy.gif" -d chat_id="${CI_CHANNEL_ID}"
-#     curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendMessage -d text="<code>IMMENSITY Automated build</code>
-# <b>BUILD TYPE</b> : <code>${TYPE}</code>
-# <b>DEVICE</b> : <code>${DEVICE}</code>
-# <b>COMPILER</b> : <code>${COMPILER}</code>
-# <b>KERNEL VERSION</b> : <code>${KERNELVER}</code>
+# function tg_post_msg() {
+#     # curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendAnimation -d animation="https://media.giphy.com/media/PPgZCwZPKrLcw75EG1/giphy.gif" -d chat_id="${CI_CHANNEL_ID}"
+# #     curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendMessage -d text="<code>IMMENSITY Automated build</code>
+# # <b>BUILD TYPE</b> : <code>${TYPE}</code>
+# # <b>DEVICE</b> : <code>${DEVICE}</code>
+# # <b>COMPILER</b> : <code>${COMPILER}</code>
+# # <b>KERNEL VERSION</b> : <code>${KERNELVER}</code>
 
-# <i>Build started on Drone Cloud!</i>
-# <a href='https://cloud.drone.io/UtsavBalar1231/kernel_xiaomi_sm8250/${DRONE_BUILD_NUMBER}'>Check the build status here</a>" -d chat_id="${CI_CHANNEL_ID}" -d parse_mode=HTML
-}
+# # <i>Build started on Drone Cloud!</i>
+# # <a href='https://cloud.drone.io/UtsavBalar1231/kernel_xiaomi_sm8250/${DRONE_BUILD_NUMBER}'>Check the build status here</a>" -d chat_id="${CI_CHANNEL_ID}" -d parse_mode=HTML
+# }
 
 function tg_post_error() {
     echo "build fail!"
@@ -253,7 +253,7 @@ function pack_image_build() {
 
 START=$(date +"%s")
 
-tg_post_msg
+# tg_post_msg
 
 # Set compiler Path
 if [[ "$@" =~ "gcc"* ]]; then
