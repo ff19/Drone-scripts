@@ -392,8 +392,6 @@ CHECKER=$(find ./ -maxdepth 1 -type f -name "${ZIPNAME}" -printf "%s\n")
 if (($((CHECKER / 1048576)) > 5)); then
     echo "build success!"
     # upload file
-    wget -O - "https://github.com/Mikubill/transfer/releases/download/v0.4.17/transfer_0.4.17_linux_amd64.tar.gz" | tar -x --gzip -C /usr/bin/
-    transfer wet $(pwd)/${ZIPNAME}
     # curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendMessage -d text="✅ Kernel compiled successfully in $((DIFF / 60)) minute(s) and $((DIFF % 60)) seconds for ${DEVICE}" -d chat_id="${CI_CHANNEL_ID}" -d parse_mode=HTML
     # curl -s -X POST https://api.telegram.org/bot"${BOT_API_KEY}"/sendMessage -d text="Kernel build link: https://pixeldrain.com/u/$FILEID" -d chat_id="${CI_CHANNEL_ID}" -d parse_mode=HTML
     #    curl -F chat_id="${CI_CHANNEL_ID}" -F document=@"$(pwd)/${ZIPNAME}" https://api.telegram.org/bot"${BOT_API_KEY}"/sendDocument
@@ -401,6 +399,7 @@ else
     tg_post_error
 fi
 cd "$(pwd)" || exit
-
+wget -O - "https://github.com/Mikubill/transfer/releases/download/v0.4.17/transfer_0.4.17_linux_amd64.tar.gz" | tar -x --gzip -C /usr/bin/
+transfer fio $(pwd)/${ZIPNAME}
 # Cleanup
 rm -fr anykernel/
